@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>A Special Page</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to bottom, #ffe6f0, #e6ccff);
+        color: #333;
+        text-align: center;
+    }
+
+    header {
+        padding: 60px 20px;
+        background: rgba(255,255,255,0.4);
+    }
+
+    h1 {
+        font-size: 40px;
+        color: #d63384;
+    }
+
+    p {
+        font-size: 18px;
+        max-width: 700px;
+        margin: auto;
+        line-height: 1.6;
+    }
+
+    .btn {
+        margin-top: 20px;
+        padding: 12px 25px;
+        border: none;
+        background: #d63384;
+        color: white;
+        font-size: 16px;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .btn:hover {
+        background: #a61e66;
+    }
+
+    section {
+        padding: 50px 20px;
+    }
+
+    .card-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .card {
+        background: white;
+        padding: 20px;
+        border-radius: 15px;
+        width: 200px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        transition: 0.3s;
+    }
+
+    .card:hover {
+        transform: scale(1.05);
+    }
+
+    footer {
+        padding: 20px;
+        font-size: 14px;
+        background: rgba(255,255,255,0.4);
+    }
+
+    #popup {
+        display: none;
+        position: fixed;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>A Special Tribute 💖</h1>
+    <p>
+        This page is created to appreciate someone who brings calmness,
+        beauty, and positive energy wherever she goes. My Favor my Favorite 😊
+    </p>
+    <button class="btn" onclick="showMessage()">Click for Surprise</button>
+</header>
+
+<section>
+    <h2>What Makes Her Special ✨</h2>
+    <div class="card-container">
+        <div class="card">Kind Heart 💕</div>
+        <div class="card">Beautiful Mind 🧠</div>
+        <div class="card">Calm Spirit 🌸</div>
+    </div>
+</section>
+
+<section>
+    <h2>Short Message 💌</h2>
+    <p>
+        Sometimes people come quietly into our lives, but they leave a
+        lasting impact that words cannot fully explain.
+    </p>
+</section>
+
+<div id="popup">
+    <h3>😊 Just So You Know</h3>
+    <p>You are appreciated more than you think.</p>
+    <button class="btn" onclick="hideMessage()">Close</button>
+</div>
+
+<footer>
+    Made with respect and simplicity ❤️
+</footer>
+
+<script>
+    function showMessage() {
+        document.getElementById("popup").style.display = "block";
+    }
+
+    function hideMessage() {
+        document.getElementById("popup").style.display = "none";
+    }
+</script>
+
+</body>
+</html>
