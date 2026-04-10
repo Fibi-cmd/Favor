@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Favor 💖</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #0f0f1a;
+        color: white;
+        overflow-x: hidden;
+    }
+
+    /* ENTRY SCREEN */
+    #entry {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle, #2b1055, #090a1a);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 10;
+    }
+
+    #entry h1 {
+        font-size: 32px;
+        text-align: center;
+        animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+        from { text-shadow: 0 0 10px #ff4da6; }
+        to { text-shadow: 0 0 25px #ff1a75; }
+    }
+
+    .enter-btn {
+        margin-top: 20px;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 30px;
+        background: #ff2e88;
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+        box-shadow: 0 0 20px #ff2e88;
+    }
+
+    /* MAIN PAGE */
+    #main {
+        display: none;
+        padding-bottom: 60px;
+    }
+
+    header {
+        text-align: center;
+        padding: 40px 20px;
+        background: linear-gradient(135deg, #1a1a40, #2b1055);
+        transform: perspective(800px) rotateX(5deg);
+    }
+
+    header h1 {
+        font-size: 30px;
+        color: #ff4da6;
+    }
+
+    header p {
+        font-size: 16px;
+        opacity: 0.9;
+    }
+
+    /* CARDS */
+    .card {
+        margin: 20px;
+        padding: 20px;
+        border-radius: 20px;
+        background: rgba(255,255,255,0.08);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        transform: perspective(800px);
+        transition: 0.4s;
+    }
+
+    .card:active {
+        transform: scale(0.97) rotateX(5deg);
+    }
+
+    .title {
+        color: #ff4da6;
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    /* FLOAT EFFECT */
+    .float {
+        animation: float 3s infinite ease-in-out;
+    }
+
+    @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0px); }
+    }
+
+    /* BUTTON */
+    .btn {
+        margin-top: 15px;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 25px;
+        background: #ff2e88;
+        color: white;
+        font-size: 16px;
+    }
+
+    /* POPUP */
+    #popup {
+        position: fixed;
+        bottom: -300px;
+        left: 0;
+        width: 100%;
+        background: white;
+        color: black;
+        padding: 20px;
+        border-radius: 20px 20px 0 0;
+        transition: 0.5s;
+    }
+
+</style>
+</head>
+
+<body>
+
+<!-- ENTRY -->
+<div id="entry">
+    <h1>💖 A Special World Awaits...</h1>
+    <button class="enter-btn" onclick="enterSite()">Tap to Enter</button>
+</div>
+
+<!-- MAIN -->
+<div id="main">
+
+    <header>
+        <h1>For Favor 💖</h1>
+        <p>A beautiful soul studying Veterinary Medicine 🐾</p>
+    </header>
+
+    <div class="card float">
+        <div class="title">About Her ✨</div>
+        <p>
+            Favor is a calm, intelligent and passionate veterinary student.
+            She carries kindness and strength in a very soft way.
+        </p>
+    </div>
+
+    <div class="card float">
+        <div class="title">Her Dream 🐾</div>
+        <p>
+            To become a great veterinary doctor, caring for animals
+            and bringing healing to life that cannot speak.
+        </p>
+    </div>
+
+    <div class="card float">
+        <div class="title">What Makes Her Special 💫</div>
+        <p>🐾 Love for animals</p>
+        <p>🧠 Intelligent mind</p>
+        <p>💖 Gentle heart</p>
+    </div>
+
+    <div class="card">
+        <button class="btn" onclick="openPopup()">Tap for a Message 💌</button>
+    </div>
+
+</div>
+
+<!-- POPUP -->
+<div id="popup">
+    <p><b>💖 Message for Favor</b></p>
+    <p>
+        You are doing something beautiful with your life.  
+        The world needs more people like you who care for life silently but deeply.
+    </p>
+    <button class="btn" onclick="closePopup()">Close</button>
+</div>
+
+<script>
+    function enterSite() {
+        document.getElementById("entry").style.display = "none";
+        document.getElementById("main").style.display = "block";
+    }
+
+    function openPopup() {
+        document.getElementById("popup").style.bottom = "0";
+    }
+
+    function closePopup() {
+        document.getElementById("popup").style.bottom = "-300px";
+    }
+
+    // floating touch effect
+    document.addEventListener("click", function(e) {
+        let spark = document.createElement("div");
+        spark.style.position = "absolute";
+        spark.style.left = e.clientX + "px";
+        spark.style.top = e.clientY + "px";
+        spark.style.width = "10px";
+        spark.style.height = "10px";
+        spark.style.background = "#ff4da6";
+        spark.style.borderRadius = "50%";
+        spark.style.pointerEvents = "none";
+        spark.style.animation = "fade 1s linear";
+
+        document.body.appendChild(spark);
+
+        setTimeout(() => {
+            spark.remove();
+        }, 1000);
+    });
+</script>
+
+</body>
+</html>
