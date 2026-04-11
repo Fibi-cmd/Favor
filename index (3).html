@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Syntia AI - Advanced</title>
+
+<style>
+body {
+    margin: 0;
+    background: radial-gradient(circle at center, #050510, #000);
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
+    color: white;
+}
+
+/* PARTICLES BACKGROUND */
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* 3D LOADING SPHERE */
+.loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) perspective(800px);
+    text-align: center;
+}
+
+.sphere {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 2px solid cyan;
+    box-shadow: 0 0 40px cyan, inset 0 0 40px blue;
+    animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotateX(0deg) rotateY(0deg); }
+    100% { transform: rotateX(360deg) rotateY(360deg); }
+}
+
+/* GLASS POPUP */
+.popup {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.6);
+    backdrop-filter: blur(15px);
+    background: rgba(0,0,0,0.6);
+    border: 1px solid rgba(0,255,255,0.3);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 30px cyan;
+    text-align: center;
+    width: 300px;
+    animation: show 0.6s forwards;
+}
+
+@keyframes show {
+    to {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
+
+/* BUTTONS */
+button {
+    margin: 8px;
+    padding: 10px 18px;
+    border-radius: 25px;
+    border: none;
+    background: linear-gradient(45deg, cyan, blue);
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px cyan;
+}
+
+/* FLOAT TEXT */
+h2 {
+    text-shadow: 0 0 10px cyan;
+}
+
+</style>
+</head>
+
+<body>
+
+<canvas id="bg"></canvas>
+
+<!-- LOADING -->
+<div class="loader" id="loader">
+    <div class="sphere"></div>
+    <p>Initializing Syntia AI...</p>
+</div>
+
+<!-- POPUP 1 -->
+<div class="popup" id="popup1">
+    <h2>⚠ Access Denied</h2>
+    <p>Favor the developer has denied you access to this passage.</p>
+</div>
+
+<!-- POPUP 2 -->
+<div class="popup" id="popup2">
+    <h2>👋 Hello</h2>
+    <p>
+        This is <b>Syntia AI</b><br>
+        Designed by Haruna.<br><br>
+        I'm still under development.<br>
+        Do you need anything else?
+    </p>
+
+    <button onclick="yesClick()">Yeah</button>
+    <button onclick="noClick()">Not really</button>
+    <button onclick="maybeClick()">Maybe later</button>
+</div>
+
+<script>
+
+/* PARTICLE SYSTEM */
+const canvas = document.getElementById("bg");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+for (let i = 0; i < 100; i++) {
+    particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 2,
+        dx: (Math.random() - 0.5),
+        dy: (Math.random() - 0.5)
+    });
+}
+
+function animate() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+        ctx.fillStyle = "cyan";
+        ctx.fill();
+
+        p.x += p.dx;
+        p.y += p.dy;
+
+        if(p.x < 0 || p.x > canvas.width) p.dx *= -1;
+        if(p.y < 0 || p.y > canvas.height) p.dy *= -1;
+    });
+
+    requestAnimationFrame(animate);
+}
+
+animate();
+
+/* FLOW CONTROL */
+setTimeout(() => {
+    loader.style.display = "none";
+    popup1.style.display = "block";
+
+    setTimeout(() => {
+        popup1.style.display = "none";
+        popup2.style.display = "block";
+    }, 5000);
+
+}, 6000);
+
+/* BUTTON ACTIONS */
+function yesClick() {
+    popup2.style.display = "none";
+    loader.style.display = "block";
+
+    setTimeout(() => {
+        loader.innerHTML = "<h2>🔄 Loading Advanced Interface...</h2>";
+    }, 2000);
+}
+
+function noClick() {
+    popup2.style.display = "none";
+}
+
+function maybeClick() {
+    let msg = document.createElement("div");
+    msg.className = "popup";
+    msg.style.display = "block";
+    msg.innerHTML = `
+        <h2>💙 Message</h2>
+        <p>miss Favor <br>
+        Thank you for exploring with me here<br>
+        I'm Syntia AI i'm glad to have you❣️</p>
+    `;
+    document.body.appendChild(msg);
+}
+
+</script>
+
+</body>
+</html>
